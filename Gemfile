@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'byebug'
+  gem 'cancan'
 end
 
 # Use ActiveModel has_secure_password

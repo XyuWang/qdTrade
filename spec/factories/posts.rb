@@ -10,6 +10,6 @@ FactoryGirl.define do
     content "content"
     price "9.99"
     contact "12222222222"
-    status 1
+    public true
   end
 end
