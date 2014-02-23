@@ -22,10 +22,10 @@ describe PostsController do
     end
   end
   
-  describe "GET 'self index'" do
+  describe "GET 'self'" do
     context "user not signed in " do
       it "shoud return error" do
-        get 'self_index'
+        get 'self'
         response.should_not be_success
       end 
     end
@@ -35,7 +35,7 @@ describe PostsController do
         sign_in user
       end
       it "returns http success" do
-        get 'self_index'
+        get 'self'
         response.should be_success
       end
     end

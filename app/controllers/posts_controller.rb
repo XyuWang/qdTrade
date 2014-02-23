@@ -1,11 +1,16 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
-  def index
-    @posts = Post.public
+  def index    
+    if params[:tab]
+      tab = Category.find params[:tab]
+      @posts = tab.posts.public
+    else
+      @posts = Post.public
+    end
   end
   
-  def self_index
+  def self
     @posts = current_user.posts
   end
 
@@ -16,9 +21,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(strong_params)
     
     if @post.save
-      redirect_to posts_self_index_path, notice: "成功"
+      redirect_to posts_self_path, notice: "成功"
     else
-      redirect_to :back, alert: "失败"
+      redirect_to :back, alert: @post.errors.full_messages.to_sentence
     end
   end
   
@@ -30,9 +35,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     
     if @post.update_attributes! strong_params
-      redirect_to posts_self_index_path, notice: "成功"
+      redirect_to posts_self_path, notice: "成功"
     else
-      redirect_to :back, alert: "失败"
+      redirect_to :back, alert: @post.errors.full_messages.to_sentence
     end
   end
 
@@ -48,9 +53,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     
     if @post.destroy
-      redirect_to posts_self_index_path, notice: "成功"
+      redirect_to posts_self_path, notice: "成功"
     else
-      redirect_to :back, alert: "失败"
+      redirect_to :back, alert: @post.errors.full_messages.to_sentence
     end
   end
   

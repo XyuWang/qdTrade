@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <%= link_to "发贴", new_post_path %>
+  <%= link_to "我的帖子", posts_self_path %>
+<% else %>
+  <%= link_to "登录", new_user_session_path %>
+<% end %>

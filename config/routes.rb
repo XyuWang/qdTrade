@@ -1,7 +1,9 @@
 QdTrade::Application.routes.draw do
-  root "home#index"
+  root "posts#index"
+
+  get 'home/index'
   
-  get "posts/self_index"
+  get "posts/self"
   resources :posts
   
   devise_for :users

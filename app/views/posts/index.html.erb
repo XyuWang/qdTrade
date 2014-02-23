@@ -1,2 +1,24 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="container">
+	<div class="row">
+	<div class="tradeArea col-md-8">
+		<div class="category">
+			<%= link_to "全部", posts_path %>
+			<% Category.all.each do |i| %>
+			<%= link_to i.name, posts_path(tab: i)%>
+			<% end %>
+		</div>
+		<div class="tradeList">
+			<% @posts.each do |post|%>
+				<div class="tradeItem row">
+					<%= link_to post.title, post_path(post)%>
+					<%= post.price.to_i%>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="col-md-4">
+	<%= render  template: "home/user_cell"%>
+	</div>
+</div>
+</div>
