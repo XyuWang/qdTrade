@@ -9,5 +9,5 @@ class ApplicationController < ActionController::Base
     else
       render file: Rails.root.join("public", "404.html"), status: 404
     end
-  end
+  end 
 end

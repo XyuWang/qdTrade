@@ -60,4 +60,28 @@ describe PostsController do
       response.should be_success
     end
   end
+  
+  describe "#create" do
+    let(:arguments) { {post: {school_id: 1, category_id: 1, title: "title", content: "content", price: "1.0", contact: "123", public: true}}}
+    
+    context "user not signed in " do
+      it "should not create" do
+        lambda do
+           post :create, arguments 
+         end.should change(Post, :count).by 0
+
+        response.should redirect_to new_user_session_path
+      end
+    end
+    
+    context "user signed in " do
+      before do
+        sign_in user
+      end
+      
+      it "should create new post" do
+        lambda { post :create, arguments }.should change(Post, :count).by 1
+      end
+    end
+  end
 end

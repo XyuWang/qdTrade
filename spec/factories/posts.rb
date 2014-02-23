@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :post do
     association :user, factory: :user
     association :school, factory: :school
-    association :type, factory: :type
     association :category, factory: :category
     title "title"
     content "content"

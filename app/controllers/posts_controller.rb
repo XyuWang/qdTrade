@@ -4,25 +4,57 @@ class PostsController < ApplicationController
   def index
     @posts = Post.public
   end
+  
+  def self_index
+    @posts = current_user.posts
+  end
 
   def new
-    @post = Post.new
   end
   
-  def post
-    @post = Post.new(params[:post])
+  def create
+    @post = current_user.posts.new(strong_params)
+    
+    if @post.save
+      redirect_to posts_self_index_path, notice: "成功"
+    else
+      redirect_to :back, alert: "失败"
+    end
+  end
+  
+  def edit
   end
   
   def update
+    @post = current_user.posts.find(params[:id])
+    
+    if @post.update_attributes! params[:post]
+      redirect_to :index, notice: "成功"
+    else
+      redirect_to :back, alert: "失败"
+    end
   end
 
   def show
     @post = Post.find params[:id]
+    
     unless can? :read, @post
       raise ActiveRecord::RecordNotFound
     end
   end
   
-  def delete
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    
+    if @post.destroy
+      redirect_to :index, notice: "成功"
+    else
+      redirect_to :back, alert: "失败"
+    end
+  end
+  
+  private
+  def strong_params
+    params[:post].permit :school_id, :category_id, :title, :content, :contact, :price, :public
   end
 end
