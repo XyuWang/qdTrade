@@ -21,6 +21,25 @@ describe PostsController do
       end
     end
   end
+  
+  describe "GET 'self index'" do
+    context "user not signed in " do
+      it "shoud return error" do
+        get 'self_index'
+        response.should_not be_success
+      end 
+    end
+    
+    context "user signed in " do
+      before do
+        sign_in user
+      end
+      it "returns http success" do
+        get 'self_index'
+        response.should be_success
+      end
+    end
+  end
 
   describe "GET 'show'" do
     let(:public_post) {create :post, public: true}
@@ -67,8 +86,8 @@ describe PostsController do
     context "user not signed in " do
       it "should not create" do
         lambda do
-           post :create, arguments 
-         end.should change(Post, :count).by 0
+          post :create, arguments 
+        end.should change(Post, :count).by 0
 
         response.should redirect_to new_user_session_path
       end
@@ -81,6 +100,100 @@ describe PostsController do
       
       it "should create new post" do
         lambda { post :create, arguments }.should change(Post, :count).by 1
+      end
+    end
+  end
+  
+  describe "GET 'edit'" do
+    let(:post) {create :post, user: user}
+    
+    context "user not signed in" do
+      it "should response 302" do
+        get :edit, id: post.id
+        response.status.should == 302
+      end
+    end
+    
+    context "user signed in" do
+      context "self post" do
+        before { sign_in user}
+        
+        it "should response success" do
+          get :edit, id: post.id
+          
+          response.should be_success
+        end
+      end
+      
+      context "other signed in " do
+        before { sign_in create(:user)}
+        it "response should not be success" do
+          get :edit, id: post.id
+          
+          response.should_not be_success
+        end
+      end
+    end
+  end
+ 
+  describe "#update" do
+    let(:post) {create :post, user: user, title: "title"}
+    
+    context "user not signed in" do
+      it "should not change post" do
+        patch :update, id: post.id, post: {title: "change"}
+        post.reload
+        post.title.should == "title" 
+      end
+    end
+    
+    context "user signed in" do
+      context "self post" do
+        before { sign_in user}
+        
+        it "should update success" do
+          patch :update, id: post.id, post: {title: "change"}
+          
+          post.reload
+          post.title.should == "change"
+        end
+      end
+      
+      context "other signed in " do
+        before { sign_in create(:user)}
+        it "should not change post" do
+          patch :update, id: post.id, post: {title: "change"}
+          
+          post.reload
+          post.title.should == "title" 
+        end
+      end
+    end
+  end
+  
+  describe "#destroy" do
+    let!(:post) {create :post, user: user, title: "title"}
+    
+    context "user not signed in" do
+      it "should not destroy post" do
+        lambda {delete :destroy, id: post.id}.should change(Post, :count).by 0
+      end
+    end
+    
+    context "user signed in" do
+      context "self post" do
+        before { sign_in user}
+        
+        it "should destroy success" do
+          lambda {delete :destroy, id: post.id}.should change(Post, :count).by -1
+        end
+      end
+      
+      context "other signed in " do
+        before { sign_in create(:user)}
+        it "should not destroy post" do
+          lambda {delete :destroy, id: post.id}.should change(Post, :count).by 0
+        end
       end
     end
   end

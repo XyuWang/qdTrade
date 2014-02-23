@@ -23,13 +23,14 @@ class PostsController < ApplicationController
   end
   
   def edit
+    @post = current_user.posts.find(params[:id])
   end
   
   def update
     @post = current_user.posts.find(params[:id])
     
-    if @post.update_attributes! params[:post]
-      redirect_to :index, notice: "成功"
+    if @post.update_attributes! strong_params
+      redirect_to posts_self_index_path, notice: "成功"
     else
       redirect_to :back, alert: "失败"
     end
@@ -47,7 +48,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     
     if @post.destroy
-      redirect_to :index, notice: "成功"
+      redirect_to posts_self_index_path, notice: "成功"
     else
       redirect_to :back, alert: "失败"
     end
