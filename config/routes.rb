@@ -1,6 +1,9 @@
 QdTrade::Application.routes.draw do
+  root "home#index"
+  
   get "posts/self_index"
   resources :posts
+  
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
