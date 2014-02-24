@@ -16,3 +16,5 @@
 //= require_tree .
 
 console.log("啊..你在看我代码...");
+
+setTimeout(function(){  $(".flash_messages").fadeOut(); }, 3000);

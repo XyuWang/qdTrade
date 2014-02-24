@@ -1,0 +1,21 @@
+<div class="container">
+	<% if @posts.blank? %>
+	<div>
+		你还没有发过帖子~
+	</div>
+	<% else %>
+	<% @posts.each do | post | %>
+	  <div class="row">
+  		  <div class="col-md-4">
+		   	  <%= link_to post.title, post_path(post)%>
+		  </div>
+		  <div class="col-md-2">
+			  <%= link_to "修改", edit_post_path(post)%>
+		  </div>
+		  <div class="col-md-2">
+			  <%= link_to "删除", post_path(post), method: :delete, data: {confirm: "你确定要删除这条信息么"}%>
+		  </div>
+	  </div>
+	  <% end %>
+	<% end %>
+</div>
