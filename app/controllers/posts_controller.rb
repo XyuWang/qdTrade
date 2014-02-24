@@ -3,8 +3,8 @@ class PostsController < ApplicationController
 
   def index    
     if params[:tab]
-      tab = Category.find params[:tab]
-      @posts = tab.posts.public
+      @tab = Category.find params[:tab]
+      @posts = @tab.posts.public
     else
       @posts = Post.public
     end

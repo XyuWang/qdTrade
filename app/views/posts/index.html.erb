@@ -1,24 +1,37 @@
 <div class="container">
 	<div class="row">
-	<div class="tradeArea col-md-8">
+	<div class="tradeArea col-md-7">
 		<div class="category">
-			<%= link_to "全部", posts_path %>
+			<%= link_to "全部", posts_path, class: "active" %>
 			<% Category.all.each do |i| %>
-			<%= link_to i.name, posts_path(tab: i)%>
+			<%= link_to i.name, posts_path(tab: i), id: "category_#{i.id}"%>
 			<% end %>
 		</div>
 		<div class="tradeList">
 			<% @posts.each do |post|%>
 				<div class="tradeItem row">
-					<%= link_to post.title, post_path(post)%>
-					<%= post.price.to_i%>
+					<div class="title col-md-8">
+					  <%= link_to post.title, post_path(post)%>
+				  </div>
+					<div class="col-md-2 col-md-offset-2">
+						<div class="price">
+					      <%= post.price.to_i%>
+				        </div>
+			    	</div>
 				</div>
 			<% end %>
 		</div>
 	</div>
 	
-	<div class="col-md-4">
+	<div class="col-md-2 col-md-offset-3">
 	<%= render "home/user_cell"%>
 	</div>
 </div>
 </div>
+
+<script>
+<% if @tab %>
+  $(".category a").removeClass("active");
+  $("#category_<%= @tab.id %>").addClass("active");
+<% end %>
+</script>
