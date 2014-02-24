@@ -11,7 +11,11 @@ class PostsController < ApplicationController
   end
   
   def self
-    @posts = current_user.posts
+    @posts = current_user.posts.where(public: true)
+  end
+  
+  def self_deleted
+    @posts = current_user.posts.where(public: false)
   end
 
   def new
@@ -53,7 +57,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     
-    if @post.destroy
+    if @post.update_attributes!(public: false)
       redirect_to posts_self_path, notice: "成功"
     else
       redirect_to :back, alert: @post.errors.full_messages.to_sentence

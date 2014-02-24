@@ -4,6 +4,8 @@ QdTrade::Application.routes.draw do
   get 'home/index'
   
   get "posts/self"
+  get "posts/self_deleted"
+  
   resources :posts
   
   devise_for :users

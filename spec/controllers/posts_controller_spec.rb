@@ -40,6 +40,25 @@ describe PostsController do
       end
     end
   end
+  
+  describe "GET 'self_deleted'" do
+    context "user not signed in " do
+      it "shoud return error" do
+        get 'self_deleted'
+        response.should_not be_success
+      end 
+    end
+    
+    context "user signed in " do
+      before do
+        sign_in user
+      end
+      it "returns http success" do
+        get 'self_deleted'
+        response.should be_success
+      end
+    end
+  end
 
   describe "GET 'show'" do
     let(:public_post) {create :post, public: true}
@@ -175,8 +194,11 @@ describe PostsController do
     let!(:post) {create :post, user: user, title: "title"}
     
     context "user not signed in" do
-      it "should not destroy post" do
-        lambda {delete :destroy, id: post.id}.should change(Post, :count).by 0
+      it "should not private the post" do
+        delete :destroy, id: post.id
+        
+        post.reload
+        post.public.should == true
       end
     end
     
@@ -184,15 +206,21 @@ describe PostsController do
       context "self post" do
         before { sign_in user}
         
-        it "should destroy success" do
-          lambda {delete :destroy, id: post.id}.should change(Post, :count).by -1
+        it "should private the post" do
+          delete :destroy, id: post.id
+        
+          post.reload
+          post.public.should == false
         end
       end
       
       context "other signed in " do
         before { sign_in create(:user)}
-        it "should not destroy post" do
-          lambda {delete :destroy, id: post.id}.should change(Post, :count).by 0
+        it "should not private the post" do
+          delete :destroy, id: post.id
+        
+          post.reload
+          post.public.should == true
         end
       end
     end

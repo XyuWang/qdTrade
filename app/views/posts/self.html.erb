@@ -1,10 +1,17 @@
 <div class="container">
+	
+	<ul class="nav nav-tabs">
+	  <li class="active"><%= link_to "显示中的帖子", posts_self_path %> </li>
+	  <li> <%= link_to "已删除的帖子", posts_self_deleted_path %> </li>
+	</ul>
+	
+	
 	<% if @posts.blank? %>
 	<div>
-		你还没有发过帖子~
 	</div>
 	<% else %>
 	<% @posts.each do | post | %>
+	
 	  <div class="row">
   		  <div class="col-md-4">
 		   	  <%= link_to post.title, post_path(post)%>
