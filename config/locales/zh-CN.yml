@@ -1,0 +1,7 @@
+zh-CN:
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        # The defaults are "about 1 hour" and "about %{count} hours"
+        one: "1小时前"
+        other: "%{count}小时前"

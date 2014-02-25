@@ -4,7 +4,7 @@
 		<div class="category">
 			<%= link_to "全部", posts_path, class: "active" %>
 			<% Category.all.each do |i| %>
-			<%= link_to i.name, posts_path(tab: i), id: "category_#{i.id}"%>
+			<%= link_to i.name, posts_path(tab: i, school: @school), id: "category_#{i.id}"%>
 			<% end %>
 		</div>
 		<div class="tradeList">
@@ -12,6 +12,10 @@
 				<div class="tradeItem row">
 					<div class="title col-md-8 col-sm-8">
 					  <%= link_to post.title, post_path(post)%>
+					  <div>
+						  <%= link_to post.school.name, posts_path(school: post.school.id, tab: @tab) %>
+						  <%= time_ago_in_words post.created_at %>
+					  </div>
 				  </div>
 					<div class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2">
 						<div class="price">

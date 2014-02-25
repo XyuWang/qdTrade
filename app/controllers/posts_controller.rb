@@ -1,13 +1,19 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
-  def index    
+  def index
+    @posts = Post.public
+    
     if params[:tab]
-      @tab = Category.find params[:tab]
-      @posts = @tab.posts.public
-    else
-      @posts = Post.public
+      @tab = Category.find params[:tab] 
+      @posts = @posts.where category_id: @tab
     end
+    
+    if params[:school]
+      @school = School.find params[:school] 
+      @posts = @posts.where school_id: @school
+    end
+
   end
   
   def self
