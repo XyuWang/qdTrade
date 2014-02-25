@@ -33,7 +33,12 @@
 		padding-top: 5px;
 		
 		.tradeItem {
+			padding: 10px 0px 10px 0px;
+			border-bottom: solid 1px #e2e2e2;
+			
+			
 			.title a{
+				word-wrap:break-word;
 				font-size: 16px;
 				color: #778087 !important;
 			}
@@ -43,7 +48,9 @@
 				color: white;
 				font-size: 16px;
 				padding: 0px 10px 0px 10px;
-				border-radius: 2px;				
+				border-radius: 15px;
+				margin: 0 auto;
+			    vertical-align: middle;
 			}
 		}
 	}
