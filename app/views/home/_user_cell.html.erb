@@ -1,6 +1,23 @@
-<% if user_signed_in? %>
-  <%= link_to "发贴", new_post_path %>
-  <%= link_to "我的帖子", posts_self_path %>
-<% else %>
+<div class="user_box">
+  <% if user_signed_in? %>
+  
+  <div class="name">
+    <%= current_user.email %>
+  </div>
+  <div class="user_posts">
+    <div class="posts_count">
+      <%= link_to current_user.posts.public.count, posts_self_path %>
+    </div>
+  
+    <div class="text">
+      显示中的帖子
+    </div>
+  </div>
+    
+  <div class="new_post">
+    <%= link_to "发贴", new_post_path %>
+  </div>
+  <% else %>
   <%= link_to "登录", new_user_session_path %>
-<% end %>
+  <% end %>
+</div>
