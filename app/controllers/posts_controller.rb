@@ -13,6 +13,10 @@ class PostsController < ApplicationController
       @school = School.find params[:school] 
       @posts = @posts.where school_id: @school
     end
+    
+    if params[:search]
+      @posts = @posts.tire.search params[:search]
+    end
 
   end
   

@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
   belongs_to :school
   belongs_to :user
   belongs_to :category

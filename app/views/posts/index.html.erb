@@ -14,7 +14,8 @@
 					  <%= link_to post.title, post_path(post)%>
 					  <div class="extra_info">
 						  <div class="school">
-						    <%= link_to post.school.name, posts_path(school: post.school.id, tab: @tab) %>
+                <% school = School.find post.school_id %>
+						    <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
               </div>
               <div class="time">
 						    <%= time_ago_in_words post.created_at %>

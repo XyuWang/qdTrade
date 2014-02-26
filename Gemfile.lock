@@ -1,3 +1,16 @@
+GIT
+  remote: git://github.com/karmi/tire.git
+  revision: 7289d0fbd28fb8d6219fa3b2ef05a8ac9bcdc9e7
+  specs:
+    tire (0.6.2)
+      activemodel (>= 3.0)
+      activesupport
+      ansi
+      hashr (~> 0.0.19)
+      multi_json (~> 1.3)
+      rake
+      rest-client (~> 1.6)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -25,6 +38,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    ansi (1.4.3)
     arel (4.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -57,6 +71,7 @@ GEM
     factory_girl_rails (4.4.0)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    hashr (0.0.22)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -96,6 +111,8 @@ GEM
     rake (10.1.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -169,5 +186,6 @@ DEPENDENCIES
   sdoc
   shoulda-matchers
   sqlite3
+  tire!
   turbolinks
   uglifier (>= 1.3.0)
