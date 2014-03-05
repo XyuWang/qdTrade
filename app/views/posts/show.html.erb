@@ -1,17 +1,22 @@
-<div class="container">
-	<div class="row">
-		<%= @post.title %>
-	</div>
-	
-	<div class="row">
-		<%= @post.content %>
-	</div>
-
-	<div class="row">
-		<%= @post.contact %>
+<div class="trade_detail container">
+	<div class="title_area col-md-8">
+		<div class="title col-md-10">
+		<h1><%= @post.title %></h1>
+		</div>
+		<div class="price col-md-2 pull-right">
+			<h1><%= @post.price %></h1>
+		</div>
 	</div>
 
-	<div class="row">
-		<%= @post.price %>
+	<div class="content_area col-md-8">
+			<%= @post.content %>
 	</div>
+
+	<div class="contact_area col-md-8">
+		<div class="contact">
+			联系方式： <%= @post.contact %>
+		</div>
+	</div>
+
+
 </div>
