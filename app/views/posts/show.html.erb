@@ -14,9 +14,17 @@
 
 	<div class="contact_area col-md-8">
 		<div class="contact">
-			联系方式： <%= @post.contact %>
+			联系方式: <a>点击显示</a>
 		</div>
 	</div>
 
 
 </div>
+
+<script>
+$(function(){
+  $(".contact_area .contact a").click(function(){
+    $(this).parent().text("联系方式: <%= @post.contact %>");
+  });
+});
+</script>
