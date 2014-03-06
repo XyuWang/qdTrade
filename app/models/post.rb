@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  default_scope { order("created_at desc") }
+  
   belongs_to :school
   belongs_to :user
   belongs_to :category
