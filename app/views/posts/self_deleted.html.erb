@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg_white">
 	
 	<ul class="nav nav-tabs">
 	  <li><%= link_to "显示中的帖子", posts_self_path %> </li>
@@ -10,12 +10,13 @@
 	<div>
 	</div>
 	<% else %>
+  
+  <table class="posts table table-hover">
 	<% @posts.each do | post | %>
-	  <div class="row">
-  		  <div class="col-md-4">
-		   	  <%= link_to post.title, post_path(post)%>
-		  </div>
-	  </div>
+  <tr>
+		<td><%= link_to post.title, post_path(post)%></td>
+  </tr>
 	  <% end %>
+  </table>
 	<% end %>
 </div>
