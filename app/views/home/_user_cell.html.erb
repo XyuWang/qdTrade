@@ -6,7 +6,7 @@
   </div>
   <div class="user_posts">
     <div class="posts_count">
-      <%= link_to current_user.posts.public.count, posts_self_path %>
+      <%=  current_user.posts.public.count %>
     </div>
   
     <div class="text">
@@ -14,8 +14,13 @@
     </div>
   </div>
     
-  <div class="new_post">
-    <%= link_to "发贴", new_post_path %>
+  <div class="cell">
+    <div class="new_post">
+      <%= link_to "发贴", new_post_path %>
+    </div>
+    <div class="manage_posts">
+      <%= link_to "管理", posts_self_path %>
+    </div>
   </div>
   <% else %>
   <%= link_to "登录", new_user_session_path %>

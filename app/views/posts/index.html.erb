@@ -1,46 +1,48 @@
-<div class="container">
-	<div class="row">
-	<div class="tradeArea col-md-8 col-sm-8">
-		<div class="category">
-			<%= link_to "全部", posts_path, class: "active" %>
-			<% Category.all.each do |i| %>
-			<%= link_to i.name, posts_path(tab: i, school: @school), id: "category_#{i.id}"%>
-			<% end %>
-		</div>
-		<div class="tradeList">
-			<% @posts.each do |post|%>
-				<div class="tradeItem row">
-					<div class="title col-md-8 col-sm-8">
-					  <%= link_to post.title, post_path(post)%>
-					  <div class="extra_info">
-						  <div class="school">
-                <% school = School.find post.school_id %>
-						    <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
-              </div>
-              <div class="time">
-						    <%= time_ago_in_words post.created_at %>
-              </div>
-            </div>
-				  </div>
-					<div class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2">
-						<div class="price">
-					      <%= post.price.to_i%>
-				        </div>
-			    	</div>
-				</div>
-			<% end %>
-		</div>
-	</div>
+<div class="user_cell">
+  <%= render "home/user_cell"%>
+</div>
+
+
+<div class="tradeArea">
+  <div class="category">
+    <%= link_to "全部", posts_path, class: "active" %>
+    <% Category.all.each do |i| %>
+    <%= link_to i.name, posts_path(tab: i, school: @school), id: "category_#{i.id}"%>
+    <% end %>
+  </div>
+  <div class="tradeList">
+    <% @posts.each do |post|%>
+    <div class="tradeItem">
+      
+      <div class="price">
+        <%= post.price.to_i %> 元
+      </div>
+      
+      <div class="title">
+        <%= link_to post.title, post_path(post)%>
+        <div class="extra_info">
+          <div class="school">
+            <% school = School.find post.school_id %>
+            <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
+          </div>
+          <div class="time">
+            <%= time_ago_in_words post.created_at %>
+          </div>
+        </div>
+      </div>
+      
+     
+      
+    </div>
+    <% end %>
+  </div>
+</div>
 	
-	<div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1">
-	<%= render "home/user_cell"%>
-	</div>
-</div>
-</div>
+
 
 <script>
 <% if @tab %>
-  $(".category a").removeClass("active");
-  $("#category_<%= @tab.id %>").addClass("active");
+$(".category a").removeClass("active");
+$("#category_<%= @tab.id %>").addClass("active");
 <% end %>
 </script>

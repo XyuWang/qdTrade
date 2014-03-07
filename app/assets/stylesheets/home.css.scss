@@ -5,8 +5,9 @@
 .user_box {
 	background: white;
   height: 150px;
-  display: block;
+  width: 270px;
   border-radius: 5px;
+  float: right;
   
   .name {
     font-size: 17px;
@@ -29,16 +30,27 @@
     text-align: center;
     color: grey;
   }
-  .user_posts {
-    cursor: pointer;
-  }
+
   
-  .new_post {
+  .cell {
     margin-top: 10px;
     text-align: center;
     font-size: 20px;
-    a {
-      color: red;
+    
+    .new_post {
+      margin-left: 20px;
+      width: 40%;
+      display: inline-block;
+			border-right: solid 2px grey;
+      a {
+        color: red;
+      }
+    }
+    
+    .manage_posts {
+      display: inline-block;
+      margin-right: 20px;
+      width: 40%;
     }
   }
 }

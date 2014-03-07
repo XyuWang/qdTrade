@@ -14,9 +14,30 @@
 
 
 #footer {
+  width: 100%;
+  background: white;
+  border-top: solid 1px #ccc;
+  margin-top: 20px;
+  
+  .content {
+    padding-top: 10px;
+    text-align: center;
+  }
+}
+
+#footer .content a{
+  font-size: 10px;
+  color: grey;
+  font-weight: bold;
 }
 
 body {
 	background: #e2e2e2 !important;
 	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+
+.wrap, nav .content, #footer .content{
+  width: 970px;
+  margin-left: auto;
+  margin-right: auto;
 }
