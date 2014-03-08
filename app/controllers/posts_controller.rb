@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
+  def search
+    @posts = Post.public.tire.search(params[:search])
+  end
+  
   def index
-    @posts = Post.public
+    @posts = Post.public.page params[:page]
     
     if params[:tab]
       @tab = Category.find params[:tab] 
@@ -12,10 +16,6 @@ class PostsController < ApplicationController
     if params[:school]
       @school = School.find params[:school] 
       @posts = @posts.where school_id: @school
-    end
-    
-    if params[:search]
-      @posts = @posts.tire.search params[:search]
     end
 
   end

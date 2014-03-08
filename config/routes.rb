@@ -5,6 +5,7 @@ QdTrade::Application.routes.draw do
   
   get "posts/self"
   get "posts/self_deleted"
+  get 'search' => "posts#search"
   
   resources :posts
   

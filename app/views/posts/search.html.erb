@@ -2,14 +2,11 @@
   <%= render "home/user_cell"%>
 </div>
 
+<div class="result">
+  <p>找到<%= @posts.count%>个结果</p>
+</div>
 
 <div class="tradeArea">
-  <div class="category">
-    <%= link_to "全部", posts_path, class: "active" %>
-    <% Category.all.each do |i| %>
-    <%= link_to i.name, posts_path(tab: i, school: @school), id: "category_#{i.id}"%>
-    <% end %>
-  </div>
   <div class="tradeList">
     <% @posts.each do |post|%>
     <div class="tradeItem">
@@ -23,7 +20,7 @@
         <div class="extra_info">
           <div class="school">
             <% school = School.find post.school_id %>
-            <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
+            <%= link_to school.name, posts_path(school: school.id) %>
           </div>
           <div class="time">
             <%= time_ago_in_words post.created_at %>
@@ -32,17 +29,5 @@
       </div>
     </div>
     <% end %>
-  </div>
-  
-  <%= paginate @posts %>
-  
+  </div>  
 </div>
-	
-
-
-<script>
-<% if @tab %>
-$(".category a").removeClass("active");
-$("#category_<%= @tab.id %>").addClass("active");
-<% end %>
-</script>
