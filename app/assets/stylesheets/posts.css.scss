@@ -129,7 +129,15 @@ form {
 }
 
 table.posts {
-  margin-top: 20px;
+  margin-top: 0px;
+  tr:first-child>th {
+    border: none;
+  }
+  
+  td {
+    word-wrap: break-word;
+    max-width: 100px;
+  }
 }
 
 .nav.nav-tabs {
