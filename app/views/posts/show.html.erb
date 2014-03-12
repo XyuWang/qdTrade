@@ -6,6 +6,10 @@
 		<div class="price col-md-3 pull-right">
 			<h2><%= @post.price %> 元</h2>
 		</div>
+    <div class="other_info">
+      <span><%= time_ago_in_words @post.created_at %>发布</span>
+      <span>•<%= @post.hits %>点击</span>
+    </div>
 	</div>
 
 	<div class="content_area col-md-8">

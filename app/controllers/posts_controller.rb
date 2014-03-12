@@ -62,6 +62,8 @@ class PostsController < ApplicationController
     unless can? :read, @post
       raise ActiveRecord::RecordNotFound
     end
+    
+    @post.increment!(:hits)
   end
   
   def destroy

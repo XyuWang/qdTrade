@@ -65,9 +65,17 @@ describe PostsController do
     let(:hidden_post) {create :post, public: false, user_id: user.id}
 
     context "public post" do
-      it "returns http success" do
+      it "should returns http success" do
         get 'show', id: public_post.id
         response.should be_success
+      end
+      
+      it "should add 1 hit" do
+        hit = public_post.hits
+        get 'show', id: public_post.id
+      
+        public_post.reload
+       (public_post.hits - hit).should == 1
       end
     end
     
@@ -79,6 +87,14 @@ describe PostsController do
           get 'show', id: hidden_post.id
           response.should be_success
         end
+        
+        it "should add 1 hit" do
+          hit = hidden_post.hits
+          get 'show', id: hidden_post.id
+      
+          hidden_post.reload
+         (hidden_post.hits - hit).should == 1
+        end
       end
       
       context "view by other" do
@@ -87,6 +103,14 @@ describe PostsController do
         it "should return failed" do
           get 'show', id: hidden_post.id
           response.should_not be_success
+        end
+        
+        it "should not add  hit" do
+          hit = hidden_post.hits
+          get 'show', id: hidden_post.id
+      
+          hidden_post.reload
+         (hidden_post.hits - hit).should == 0
         end
       end
     end
