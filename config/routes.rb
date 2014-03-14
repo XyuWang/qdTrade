@@ -3,11 +3,15 @@ QdTrade::Application.routes.draw do
 
   get 'home/index'
   
-  get "posts/self"
-  get "posts/self_deleted"
-  get 'search' => "posts#search"
+  resources :posts do
+    collection do 
+      get :self
+      get :deleted, to: "posts#self_deleted"
+      get :search
+    end
+  end
   
-  resources :posts
+  resource :profile, only: [:show, :edit, :update], controller: "profile"
   
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

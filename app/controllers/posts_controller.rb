@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(strong_params)
     
     if @post.save
-      redirect_to posts_self_path, notice: "成功"
+      redirect_to self_posts_path, notice: "成功"
     else
       redirect_to :back, alert: @post.errors.full_messages.to_sentence
     end
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     
     if @post.update_attributes! strong_params
-      redirect_to posts_self_path, notice: "成功"
+      redirect_to self_posts_path, notice: "成功"
     else
       redirect_to :back, alert: @post.errors.full_messages.to_sentence
     end
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     
     if @post.update_attributes!(public: false)
-      redirect_to posts_self_path, notice: "成功"
+      redirect_to self_posts_path, notice: "成功"
     else
       redirect_to :back, alert: @post.errors.full_messages.to_sentence
     end

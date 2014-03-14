@@ -7,5 +7,8 @@ FactoryGirl.define do
     end
     password "password"
     password_confirmation "password"
+    sequence :nickname do |n|
+      "person#{n}"
+    end
   end
 end

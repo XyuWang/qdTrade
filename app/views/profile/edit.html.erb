@@ -1,0 +1,14 @@
+
+<%= form_for @user, method: :patch, url: profile_path  do |f|%>
+<div class="email">
+  Email:<%= f.label :email, @user.email %>
+</div>
+<div class="nickname">
+  昵称: <%= f.label :nickname, @user.nickname %>
+</div>
+
+<div class="renren">
+  人人地址: <%= f.text_field :renren_url %>
+</div>
+<%= f.submit "更改"%>
+<% end%>

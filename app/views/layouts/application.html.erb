@@ -20,14 +20,14 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <form class="navbar-form navbar-left" role="search" action="search">
+        <form class="navbar-form navbar-left" role="search" action="/posts/search">
           <div class="form-group">
             <input type="text" class="form-control" name="search" placeholder="搜索">
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li><a href="#">设置</a></li>
+          <li><%= link_to "设置", edit_profile_path %></li>
           <li><%= link_to "退出", destroy_user_session_path, method: :delete%></li>
           <% else %>
           <li><%= link_to "注册", new_user_registration_path %></li>
