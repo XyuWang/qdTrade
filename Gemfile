@@ -7,6 +7,8 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'devise'
 gem "tire", git: "git://github.com/karmi/tire.git"
 gem 'kaminari'
+gem 'paperclip', "~> 4.1"
+gem 'rmagick'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

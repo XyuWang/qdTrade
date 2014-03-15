@@ -36,6 +36,10 @@
 			padding: 10px 0px 10px 10px;
 			border-bottom: solid 1px #e2e2e2;
 
+      .avatar {
+        float: left;
+        margin-right: 10px;
+      }
 
 			.title > a{
 				word-wrap:break-word;
@@ -57,6 +61,11 @@
 
       .extra_info {
         margin-top: 5px;
+        
+        .author {
+          display: inline-block;
+          margin-right: 10px;
+        }
 
   			.school {
           display: inline-block;

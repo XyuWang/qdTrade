@@ -7,7 +7,7 @@ class ProfileController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update_attributes params[:user].permit(:nickname, :renren_url)
+    if @user.update_attributes params[:user].permit(:nickname, :renren_url, :avatar)
       redirect_to edit_profile_path, notice: "成功"
     else
       redirect_to edit_profile_path, alert: @user.errors.full_messages.to_sentence

@@ -1,15 +1,19 @@
 <div class="trade_detail container">
 	<div class="title_area col-md-8">
-		<div class="title col-md-9">
+    <div class='avatar col-md-2'>
+      <%= image_tag @post.user.avatar.url(:medium) %>
+    </div>
+		<div class="title col-md-7">
 		<h2><%= @post.title %></h2>
-		</div>
+    <div class="other_info">
+      <span><%= link_to @post.user.nickname, profile_path(id: @post.user) %></span>
+      <span><%= time_ago_in_words @post.created_at %>发布</span>
+      <span>•&nbsp;<%= @post.hits %>点击</span>
+    </div>
+    </div>
 		<div class="price col-md-3 pull-right">
 			<h2><%= @post.price %> 元</h2>
 		</div>
-    <div class="other_info">
-      <span><%= time_ago_in_words @post.created_at %>发布</span>
-      <span>•<%= @post.hits %>点击</span>
-    </div>
 	</div>
 
 	<div class="content_area col-md-8">

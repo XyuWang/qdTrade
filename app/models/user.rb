@@ -5,8 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
+  
+  has_attached_file :avatar, :styles => { :medium => "75x75>", :thumb => "48x48>" }, :default_url => "/assets/:style/avatar.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  
   validates :nickname, presence: true, uniqueness: true
   validate :check_renren_url
+
+
 
   private
 
