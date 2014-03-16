@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
   def search
-    @posts = Post.public.tire.search(params[:search])
+    @posts = Post.public.tire.search(params[:p])
   end
   
   def index
