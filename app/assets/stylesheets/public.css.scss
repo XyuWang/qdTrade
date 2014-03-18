@@ -1,8 +1,15 @@
+html, body {
+  height: 100%;
+}
+.wrap {
+  margin-bottom: 65px;
+  min-height: 75%;
+}
+
 #footer {
   width: 100%;
   background: white;
   border-top: solid 1px #ccc;
-  margin-top: 20px;
   
   .content {
     padding-top: 10px;
