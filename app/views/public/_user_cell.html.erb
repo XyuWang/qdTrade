@@ -16,10 +16,10 @@
     
   <div class="cell">
     <div class="new_post">
-      <%= link_to "发贴", new_post_path %>
+      <%= link_to "发贴", new_post_path, class: "btn btn-default" %>
     </div>
     <div class="manage_posts">
-      <%= link_to "管理", self_posts_path %>
+      <%= link_to "管理", self_posts_path, class: "btn  btn-default" %>
     </div>
   </div>
   <% else %>
