@@ -1,50 +1,57 @@
-<div class="user_cell">
-  <%= render "public/user_cell"%>
-</div>
-
-
-<div class="tradeArea">
-  <div class="category">
-    <%= link_to "全部", posts_path, class: "active" %>
-    <% Category.all.each do |i| %>
-    <%= link_to i.name, posts_path(tab: i, school: @school), id: "category_#{i.id}"%>
-    <% end %>
-  </div>
-  <div class="tradeList">
-    <% @posts.each do |post|%>
-    <div class="tradeItem">
-      
-      <div class="price">
-        <%= post.price %> 元
-      </div>
-      
-      <div class="avatar">
-        <%= image_tag post.user.avatar.url(:thumb) %>
-      </div>
-      
-      <div class="title">
-        <%= link_to post.title, post_path(post)%>
-        <div class="extra_info">
-          <div class="school">
-            <% school = School.find post.school_id %>
-            <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
-          </div>
-          <div class="author">
-            <%= link_to post.user.nickname, profile_path(id: post.user) %>
-          </div>
-          <div class="time">
-            <%= time_ago_in_words post.created_at %>
-          </div>
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <div class="tradeArea">
+        <div class="category">
+          <%= link_to "全部", posts_path, class: "active" %>
+          <% Category.all.each do |i| %>
+          <%= link_to i.name, posts_path(tab: i, school: @school), id: "category_#{i.id}"%>
+          <% end %>
         </div>
+        <div class="tradeList">
+          <% @posts.each do |post|%>
+          <div class="tradeItem">
+      
+            <div class="price">
+              <%= post.price %> 元
+            </div>
+      
+            <div class="avatar">
+              <%= image_tag post.user.avatar.url(:thumb) %>
+            </div>
+      
+            <div class="title">
+              <%= link_to post.title, post_path(post)%>
+              <div class="extra_info">
+                <div class="school">
+                  <% school = School.find post.school_id %>
+                  <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
+                </div>
+                <div class="author">
+                  <%= link_to post.user.nickname, profile_path(id: post.user) %>
+                </div>
+                <div class="time">
+                  <%= time_ago_in_words post.created_at %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+  
+        <%= paginate @posts %>
+  
       </div>
     </div>
-    <% end %>
+    <div class="col-md-4 col-sm-4 hidden-xs">
+        <div class="user_cell">
+          <%= render "public/user_cell"%>
+        </div>
+    </div>
   </div>
-  
-  <%= paginate @posts %>
-  
-</div>
-	
+
+
+
+
 
 
 <script>

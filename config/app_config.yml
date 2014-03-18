@@ -1,0 +1,12 @@
+default: &default
+  site_name: "青大交易网"
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  

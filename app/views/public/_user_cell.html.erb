@@ -13,16 +13,16 @@
       显示中的帖子
     </div>
   </div>
-    
-  <div class="cell">
-    <div class="new_post">
+
+  <div class="cell row">
+    <div class="new_post col-md-6">
       <%= link_to "发贴", new_post_path, class: "btn btn-default" %>
     </div>
-    <div class="manage_posts">
+    <div class="manage_posts col-md-5">
       <%= link_to "管理", self_posts_path, class: "btn  btn-default" %>
     </div>
-  </div>
   <% else %>
   <%= link_to "登录", new_user_session_path %>
   <% end %>
+  </div>
 </div>
