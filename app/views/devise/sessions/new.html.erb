@@ -1,17 +1,51 @@
-<h2>Sign in</h2>
+<div class="row">
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="sign_in">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "form-horizontal"}) do |f| %>
+      <div class="form-group">
+        <label for="email" class="control-label col-md-2">Email</label>
+        <div class="col-md-10">
+          <%= f.email_field :email, :autofocus => true, class: "form-control", placeholder: "Email", id: "email" %>
+        </div>
+      </div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+      <div class="form-group">
+        <label class= "control-label col-md-2">密码</label>
+        <div class="col-md-10">
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+        
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-3">
+          <% if devise_mapping.rememberable? -%>
+          <div class="checkbox">
+            <label><%= f.check_box :remember_me %>记住我</label>
+          </div>
+          <% end -%>
+        </div>
+        <div class="col-sm-7">
+        </div>
+      </div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit "登录", class: "btn btn-default" %>      
+          
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "忘记密码?", new_password_path(resource_name), class: "forget_password" %><br />
+          <% end -%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 hidden-xs">
+    <div class="user_cell">
+      <%= render "public/user_cell"%>
+    </div>
+  </div>
+</div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
 
-<%= render "devise/shared/links" %>

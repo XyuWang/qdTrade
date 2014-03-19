@@ -2,13 +2,14 @@ html, body {
   height: 100%;
 }
 .wrap {
-  margin-bottom: 65px;
-  min-height: 75%;
+  margin-bottom: -30px;
+  min-height: 100%;
 }
 
 #footer {
+  margin-top: 30px;
   width: 100%;
-  background: white;
+  background: #e2e2e2;
   border-top: solid 1px #ccc;
   
   .container {
@@ -57,7 +58,27 @@ body {
     text-align: center;
     color: grey;
   }
-
+  
+  .unlogin {
+    padding: 13px;
+    
+    .welcome {
+      border-bottom: 1px solid #e2e2e2;
+      
+      font-size: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .register {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .login {
+      margin-top: 10px;
+      text-align: center;
+    
+    }
+}
   
   .cell {
     margin-top: 10px;
