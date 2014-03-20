@@ -14,11 +14,13 @@
   <table class="posts table table-hover">
     <tr>
       <th>标题</th>
+      <th>恢复</th>
       <th>时间</th>
     </tr>
 	<% @posts.each do | post | %>
   <tr>
 		<td><%= link_to post.title, post_path(post)%></td>
+    <td><%= link_to "恢复", recover_post_path(post), method: :put %></td>
     <td><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></td>
   </tr>
 	  <% end %>

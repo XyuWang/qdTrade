@@ -9,6 +9,10 @@ QdTrade::Application.routes.draw do
       get :deleted, to: "posts#self_deleted"
       get :search
     end
+    
+    member do
+      put :recover
+    end
   end
   
   resource :profile, only: [:show, :edit, :update], controller: "profile"

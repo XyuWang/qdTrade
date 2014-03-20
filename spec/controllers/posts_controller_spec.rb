@@ -249,4 +249,41 @@ describe PostsController do
       end
     end
   end
+  
+  describe "#recover" do
+    let!(:post) {create :post, user: user, title: "title", public: false}
+    
+    context "user not signed in" do
+      it "should not public the post" do
+        put :recover, id: post.id
+        
+        post.reload
+        post.public.should == false
+      end
+    end
+    
+    context "user signed in" do
+      context "self post" do
+        before { sign_in user}
+        
+        it "should public the post" do
+          put :recover, id: post.id          
+        
+          post.reload
+          post.public.should == true
+        end
+      end
+      
+      context "other signed in " do
+        before { sign_in create(:user)}
+        it "should not public the post" do
+          put :recover, id: post.id
+          
+        
+          post.reload
+          post.public.should == false
+        end
+      end
+    end
+  end
 end

@@ -76,6 +76,17 @@ class PostsController < ApplicationController
     end
   end
   
+  def recover
+    @post = current_user.posts.find(params[:id])
+    
+    if @post.update_attributes!(public: true)
+      redirect_to self_posts_path, notice: "成功"
+    else
+      redirect_to :back, alert: @post.errors.full_messages.to_sentence
+    end
+  end
+  
+  
   private
   def strong_params
     params[:post].permit :school_id, :category_id, :title, :content, :contact, :price, :public
