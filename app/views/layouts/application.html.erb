@@ -6,8 +6,8 @@
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag params[:controller] %>
-  <%= stylesheet_link_tag params[:controller] %>
+  <%= javascript_include_tag params[:controller],  "data-turbolinks-track" => true%>
+  <%= stylesheet_link_tag params[:controller] , "data-turbolinks-track" => true%>
   <%= csrf_meta_tags %> 
   
   <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">

@@ -23,8 +23,8 @@ zh-CN:
         not_found_in_database: "帐号输入错误。找不到用户"
     sessions:
       user:
-        signed_in: '登录成功啦，开始你的美食之旅吧~.'
-        signed_out: '55555..你就这么走了么.'
+        signed_in: '成功登录.'
+        signed_out: '成功退出'
     passwords:
       send_instructions: '稍后你将收到帐号激活的电子邮件'
       updated: '您的密码已修改成功，您现在已登录.'
