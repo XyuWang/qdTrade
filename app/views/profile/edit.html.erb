@@ -1,21 +1,49 @@
+<div class="row">
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="profile">
+      <%= form_for @user, method: :patch, url: profile_path, html: {class: "form-horizontal"}  do |f|%>
+      
+      <div class="form-group">
+        <label class="control-label col-md-2 col-sm-2 col-xs-2">Email</label>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+        <span><%= @user.email %></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label col-md-2  col-sm-2 col-xs-2">昵称</label>
+        <div class="col-md-10  col-sm-10 col-xs-10">
+        <span><%= @user.nickname %></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label col-md-2  col-sm-2 col-xs-2">人人地址</label>
+        <div class="col-md-6  col-sm-6 col-xs-6">
+        <%= f.text_field :renren_url, class: "form-control" %>
+        </div>
+      </div>
 
-<%= form_for @user, method: :patch, url: profile_path  do |f|%>
-<div class="email">
-  Email:<%= f.label :email, @user.email %>
-</div>
-<div class="nickname">
-  昵称: <%= f.label :nickname, @user.nickname %>
-</div>
 
-<div class="renren">
-  人人地址: <%= f.text_field :renren_url %>
-</div>
+      <div class="form-group">
+        <label class="control-label col-md-2  col-sm-2 col-xs-2">头像</label>
+        <div class="col-md-10  col-sm-10 col-xs-10">
+        <%= image_tag @user.avatar.url(:medium) %>
+        <%= image_tag @user.avatar.url(:thumb) %>
 
-<div class="avatar">
-<%= image_tag @user.avatar.url(:medium) %>
-<%= image_tag @user.avatar.url(:thumb) %>
-
-<%= f.file_field :avatar%>
+        <span><%= f.file_field :avatar%></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-xs-offset-2 col-xs-10 col-sm-10">
+          <%= f.submit "更改", class: "btn btn-default" %>
+          </div>
+      </div>
+      <% end%>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 hidden-xs">
+    <%= render "public/user_cell"%>
+  </div>
 </div>
-<%= f.submit "更改"%>
-<% end%>

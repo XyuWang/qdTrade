@@ -44,10 +44,10 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+          <li><%= link_to "发贴", new_post_path, class: "visible-xs" %></li>
+          <li><%= link_to "管理", self_posts_path, class: "visible-xs" %></li>
           <li><%= link_to "设置", edit_profile_path %></li>
           <li><%= link_to "退出", destroy_user_session_path, method: :delete%></li>
-          <li><%= link_to "管理", self_posts_path, class: "visible-xs" %></li>
-          <li><%= link_to "发贴", new_post_path, class: "visible-xs" %></li>
           <% else %>
           <li><%= link_to "注册", new_user_registration_path %></li>
           <li><%= link_to "登录", new_user_session_path %></li>

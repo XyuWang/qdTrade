@@ -1,21 +1,51 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+ <div class="errors"> <%= resource.errors.full_messages.to_sentence %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-  
-  <div><%= f.label :nickname %><br />
-  <%= f.text_field :nickname %></div>
+<div class="row">
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="sign_up">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),html: {class: "form-horizontal"}) do |f| %>
+      <div class="form-group">
+        <label for="email" class="control-label col-md-2">Email</label>
+        <div class="col-md-10">
+          <%= f.email_field :email, :autofocus => true, class: "form-control", placeholder: "Email", id: "email" %>
+        </div>
+      </div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+      <div class="form-group">
+        <label class= "control-label col-md-2">昵称</label>
+        <div class="col-md-10">
+          <%= f.text_field :nickname, class: "form-control" %>
+        </div>
+      </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div class="form-group">
+        <label class= "control-label col-md-2">密码</label>
+        <div class="col-md-10">
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class= "control-label col-md-2">确认密码</label>
+        <div class="col-md-10">
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+      </div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit "注册", class: "btn btn-default" %>      
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 hidden-xs">
+    <div class="user_cell">
+      <%= render "public/user_cell"%>
+    </div>
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>
+

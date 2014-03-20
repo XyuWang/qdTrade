@@ -9,6 +9,7 @@ gem "tire", git: "git://github.com/karmi/tire.git"
 gem 'kaminari'
 gem 'paperclip', "~> 4.1"
 gem 'rmagick'
+gem 'jquery-turbolinks'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
