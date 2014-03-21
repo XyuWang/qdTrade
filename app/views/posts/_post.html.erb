@@ -1,0 +1,26 @@
+<div class="tradeItem">
+      
+  <div class="price">
+    <%= post.price %> 元
+  </div>
+      
+  <div class="avatar">
+    <%= image_tag post.user.avatar.url(:thumb) %>
+  </div>
+      
+  <div class="title">
+    <%= link_to post.title, post_path(post), "data-no-turbolink" => true%>
+    <div class="extra_info">
+      <div class="school">
+        <% school = School.find post.school_id %>
+        <%= link_to school.name, posts_path(school: school.id, tab: @tab) %>
+      </div>
+      <div class="author">
+        <%= link_to post.user.nickname, profile_path(id: post.user) %>
+      </div>
+      <div class="time">
+        <%= time_ago_in_words post.created_at %>
+      </div>
+    </div>
+  </div>
+</div>

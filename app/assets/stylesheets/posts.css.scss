@@ -29,60 +29,6 @@
   .paginate {
     text-align: center;    
   }
-  
-	.tradeList {
-		.tradeItem {
-			padding: 10px 0px 10px 10px;
-			border-bottom: solid 1px #e2e2e2;
-
-      .avatar {
-        float: left;
-        margin-right: 10px;
-      }
-
-			.title > a{
-				word-wrap:break-word;
-				font-size: 16px;
-				color: #778087 !important;
-			}
-			.price {
-        float: right;
-				background: #778087;
-				color: white;
-				font-size: 16px;
-				padding: 0px 10px 0px 10px;
-				border-radius: 15px;
-				margin: 0 auto;
-			  vertical-align: middle;
-        margin-right: 20px;
-        margin-top: 10px;
-			}
-
-      .extra_info {
-        margin-top: 5px;
-        
-        .author {
-          display: inline-block;
-          margin-right: 10px;
-        }
-
-  			.school {
-          display: inline-block;
-  				background: #e2e2e2;
-          border-radius: 5px;
-          margin-right: 10px;
-          a {
-            font-size: 14px;
-    				color: #778087 !important;
-          }
-  			}
-        .time {
-          display: inline-block;
-          color: #ccc;
-        }
-      }
-		}
-	}
 }
 
 

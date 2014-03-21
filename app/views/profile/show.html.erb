@@ -1,3 +1,28 @@
-<%= image_tag @user.avatar.url(:medium) %>
-注册时间:<%= @user.created_at.strftime("%Y-%m-%d") %>
-发帖数：<%= @user.posts.count %>
+<div class="row">
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="display_user">
+    <div class="row">
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        <%= image_tag @user.avatar.url(:medium) %>
+      </div>
+      <div class="col-md-10 col-sm-10 col-xs-10">
+        <h1><%= @user.nickname %></h1>
+        <div class="extra_info">
+           <%= "第#{@user.id}号会员，加入于 #{@user.created_at.strftime("%Y-%m-%d")}， 发帖 #{@user.posts.count}" %>
+        </div>
+      </div>
+      </div>
+      </div>
+  
+      <div class="row">
+        <div class="tradeList col-md-12 col-sm-12 col-xs-12">
+          <% @posts.each do |post|%>
+          <%= render "posts/post", post: post %>
+          <% end %>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-4 hidden-xs col-sm-4">
+    <%= render "public/user_cell"%>
+  </div>
+</div>
